@@ -1,0 +1,22 @@
+{% comment %}Bart - Remove product by variant.id when message from script editor == Free Gift {% endcomment %}
+{% for item in cart.items %}
+   {% if item.variant.id == 36943719923875 %}
+      {% if line_item.message == Free Gift %}
+          <script>
+                  $.ajax({
+                                            type: 'POST',
+                                            url: '/cart/change.js',
+                                            dataType: 'json',
+                                            data: {
+                                              id: 36943719923875
+                                              ,
+                                              quantity: 0
+                                            },
+                                                  function(response) {
+                            location.reload();
+                          }
+                  });
+           </script>
+       {% endif %}
+   {% endif %}
+{% endfor %}
